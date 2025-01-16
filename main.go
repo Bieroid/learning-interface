@@ -35,7 +35,9 @@ func main() {
 	for german.Hp > 0 && !tmblrWin {
 		locNumb := locatOutput()
 		mob := CreateRandomMob(locNumb)
+		fmt.Println("sdfsdf")
 		if mob.IsFriendly() {
+			fmt.Println("sdfsdf")
 			mob.Greeting()
 			german.Hp = german.Hp + 20
 		} else {
@@ -140,13 +142,14 @@ func CreateRandomMob(locNumb int) Mob {
 	
 	switch locNumb {
 		case 1: 
-			createYakut(mobType)
+			return createYakut(mobType)
 		case 2:
-			createKalmyk(mobType)
+			return createKalmyk(mobType)
 		case 3:
-			createTatarin(mobType)
+			return createTatarin(mobType)
+		default:
+			return nil
 	}
-	return nil
 }
 
 func createYakut(mobType int) Mob {
