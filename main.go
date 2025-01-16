@@ -35,9 +35,7 @@ func main() {
 	for german.Hp > 0 && !tmblrWin {
 		locNumb := locatOutput()
 		mob := CreateRandomMob(locNumb)
-		fmt.Println("sdfsdf")
 		if mob.IsFriendly() {
-			fmt.Println("sdfsdf")
 			mob.Greeting()
 			german.Hp = german.Hp + 20
 		} else {
