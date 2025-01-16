@@ -6,10 +6,10 @@ import (
 )
 
 type Yakut struct {
-	hp int
-	name string
+	hp     int
+	name   string
 	attack int
-	exp int
+	exp    int
 }
 
 func (enemy *Yakut) Punch() int {
@@ -55,20 +55,20 @@ func (enemy *Yakut) GetDamage(attack int, energy int, name string) {
 		fmt.Printf("%s: Получай плюху на %d\n", name, attack)
 		enemy.hp = enemy.hp - attack
 	} else {
-		fmt.Printf("%s: Я получаю силу от будды, я чувствую ее, получай божетсвенной ладонью на %d\n", name, attack + energy)
+		fmt.Printf("%s: Я получаю силу от будды, я чувствую ее, получай божетсвенной ладонью на %d\n", name, attack+energy)
 		enemy.hp = enemy.hp - attack - energy
 	}
 }
 
 type Kalmyk struct {
-	hp int
-	name string
+	hp     int
+	name   string
 	attack int
-	exp int
+	exp    int
 }
 
 func (enemy *Kalmyk) Punch() int {
-	fmt.Printf("%s: Якуты так просто не сдаются, ", enemy.name)
+	fmt.Printf("%s: Я слышал якуты так просто не сдаются, а чем я хуже", enemy.name)
 	return enemy.GetAttack()
 }
 
@@ -110,16 +110,16 @@ func (enemy *Kalmyk) GetDamage(attack int, energy int, name string) {
 		fmt.Printf("%s: Получай плюху на %d\n", name, attack)
 		enemy.hp = enemy.hp - attack
 	} else {
-		fmt.Printf("%s: Я получаю силу от будды, я чувствую ее, получай божетсвенной ладонью на %d\n", name, attack + energy)
+		fmt.Printf("%s: Я получаю силу от будды, я чувствую ее, получай божетсвенной ладонью на %d\n", name, attack+energy)
 		enemy.hp = enemy.hp - attack - energy
 	}
 }
 
 type Tatarin struct {
-	hp int
-	name string
+	hp     int
+	name   string
 	attack int
-	exp int
+	exp    int
 }
 
 func (enemy *Tatarin) Punch() int {
@@ -165,7 +165,7 @@ func (enemy *Tatarin) GetDamage(attack int, energy int, name string) {
 		fmt.Printf("%s: Получай плюху на %d\n", name, attack)
 		enemy.hp = enemy.hp - attack
 	} else {
-		fmt.Printf("%s: Я получаю силу от будды, я чувствую ее, получай божетсвенной ладонью на %d\n", name, attack + energy)
+		fmt.Printf("%s: Я получаю силу от будды, я чувствую ее, получай божетсвенной ладонью на %d\n", name, attack+energy)
 		enemy.hp = enemy.hp - attack - energy
 	}
 }
