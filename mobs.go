@@ -1,123 +1,171 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+)
 
-type Orc struct {
+type Yakut struct {
 	hp int
 	name string
+	attack int
+	exp int
 }
 
-func (thrall *Orc) Punch() int {
-	fmt.Printf("%s: Моя не умереть", thrall.name)
-	return 10
+func (enemy *Yakut) Punch() int {
+	fmt.Printf("%s: Якуты так просто не сдаются, ", enemy.name)
+	return enemy.GetAttack()
 }
 
-func (thrall *Orc) IsFriendly() bool {
-	return false
+func (enemy *Yakut) IsFriendly() bool {
+	i := rand.Intn(2)
+	if i == 0 {
+		return false
+	} else {
+		return true
+	}
 }
 
-func (thrall *Orc) GetHpQuantity() int {
-	return thrall.hp
+func (enemy *Yakut) GetAttack() int {
+	minAttack := float64(enemy.attack) * 0.5
+	maxAttack := float64(enemy.attack) * 1.5
+	damage := minAttack + rand.Float64()*(maxAttack-minAttack)
+	fmt.Printf("получай %d урона\n", int(damage))
+	return int(damage)
 }
 
-func (thrall *Orc) GetName() string {
-	return thrall.name
+func (enemy *Yakut) GetHpQuantity() int {
+	return enemy.hp
 }
 
-func (thrall *Orc) Greeting() {
-	fmt.Printf("%s: Ыбымбе\n", thrall.GetName())
+func (enemy *Yakut) GetExp() int {
+	return enemy.exp
 }
 
-func (thrall *Orc) GetDamage(attack int) {
-	thrall.hp = thrall.hp - attack
+func (enemy *Yakut) GetName() string {
+	return enemy.name
 }
 
-type Goblin struct {
-	hp   int
+func (enemy *Yakut) Greeting() {
+	fmt.Printf("%s: Здарова, я добрый, на подгон\nВы рады и ваше хп увеличилось на 20\n\n", enemy.GetName())
+}
+
+func (enemy *Yakut) GetDamage(attack int, energy int, name string) {
+	if energy < 20 {
+		fmt.Printf("%s: Получай плюху на %d\n", name, attack)
+		enemy.hp = enemy.hp - attack
+	} else {
+		fmt.Printf("%s: Я получаю силу от будды, я чувствую ее, получай божетсвенной ладонью на %d\n", name, attack + energy)
+		enemy.hp = enemy.hp - attack - energy
+	}
+}
+
+type Kalmyk struct {
+	hp int
 	name string
+	attack int
+	exp int
 }
-   
-func (goblin *Goblin) Punch() int {
-	fmt.Printf("%s: Тыкать-тыкать!\n", goblin.name)
-	return 5
+
+func (enemy *Kalmyk) Punch() int {
+	fmt.Printf("%s: Якуты так просто не сдаются, ", enemy.name)
+	return enemy.GetAttack()
 }
-   
-func (goblin *Goblin) IsFriendly() bool {
-	return false
+
+func (enemy *Kalmyk) IsFriendly() bool {
+	i := rand.Intn(2)
+	if i == 0 {
+		return false
+	} else {
+		return true
+	}
 }
-   
-func (goblin *Goblin) GetHpQuantity() int {
-	return goblin.hp
+
+func (enemy *Kalmyk) GetAttack() int {
+	minAttack := float64(enemy.attack) * 0.5
+	maxAttack := float64(enemy.attack) * 1.5
+	damage := minAttack + rand.Float64()*(maxAttack-minAttack)
+	fmt.Printf("получай %d урона\n", int(damage))
+	return int(damage)
 }
-   
-func (goblin *Goblin) GetName() string {
-	return goblin.name
+
+func (enemy *Kalmyk) GetHpQuantity() int {
+	return enemy.hp
 }
-   
-func (goblin *Goblin) Greeting() {
-	fmt.Printf("%s: Гыгыгы!\n", goblin.GetName())
+
+func (enemy *Kalmyk) GetExp() int {
+	return enemy.exp
 }
-   
-func (goblin *Goblin) GetDamage(attack int) {
-	goblin.hp = goblin.hp - attack
+
+func (enemy *Kalmyk) GetName() string {
+	return enemy.name
 }
-   
-type Troll struct {
-	hp   int
+
+func (enemy *Kalmyk) Greeting() {
+	fmt.Printf("Наран Петрович: Менд, брат, не узнал, это же я, Наран Петрович, а ты думал я %s, пошли в Синнабон лучше\nВы рады и ваше хп увеличилось на 20\n\n", enemy.GetName())
+}
+
+func (enemy *Kalmyk) GetDamage(attack int, energy int, name string) {
+	if energy < 20 {
+		fmt.Printf("%s: Получай плюху на %d\n", name, attack)
+		enemy.hp = enemy.hp - attack
+	} else {
+		fmt.Printf("%s: Я получаю силу от будды, я чувствую ее, получай божетсвенной ладонью на %d\n", name, attack + energy)
+		enemy.hp = enemy.hp - attack - energy
+	}
+}
+
+type Tatarin struct {
+	hp int
 	name string
-}
-   
-func (troll *Troll) Punch() int {
-	fmt.Printf("%s: УАААААА!\n", troll.name)
-	return 15
-}
-   
-func (troll *Troll) IsFriendly() bool {
-	return false
-}
-   
-func (troll *Troll) GetHpQuantity() int {
-	return troll.hp
-}
-   
-func (troll *Troll) GetName() string {
-	return troll.name
-}
-   
-func (troll *Troll) Greeting() {
-	fmt.Printf("%s: Гррррр!\n", troll.GetName())
-}
-   
-func (troll *Troll) GetDamage(attack int) {
-	troll.hp = troll.hp - attack
+	attack int
+	exp int
 }
 
-type Dragon struct {
-	hp   int
-	name string
+func (enemy *Tatarin) Punch() int {
+	fmt.Printf("%s: Нет лучше подарочка, чем жена татарочка, ", enemy.name)
+	return enemy.GetAttack()
 }
 
-func (dragon *Dragon) Punch() int {
-	fmt.Printf("%s: ДЫШУ ОГНЕМ! ШШШШШШ!\n", dragon.name)
-	return 100000
+func (enemy *Tatarin) IsFriendly() bool {
+	i := rand.Intn(2)
+	if i == 0 {
+		return false
+	} else {
+		return true
+	}
 }
 
-func (dragon *Dragon) IsFriendly() bool {
-	return false
+func (enemy *Tatarin) GetAttack() int {
+	minAttack := float64(enemy.attack) * 0.5
+	maxAttack := float64(enemy.attack) * 1.5
+	damage := minAttack + rand.Float64()*(maxAttack-minAttack)
+	fmt.Printf("получай %d урона\n", int(damage))
+	return int(damage)
 }
 
-func (dragon *Dragon) GetHpQuantity() int {
-	return dragon.hp
+func (enemy *Tatarin) GetHpQuantity() int {
+	return enemy.hp
 }
 
-func (dragon *Dragon) GetName() string {
-	return dragon.name
+func (enemy *Tatarin) GetExp() int {
+	return enemy.exp
 }
 
-func (dragon *Dragon) Greeting() {
-	fmt.Printf("%s: Я дракон, повелитель огня!\n", dragon.GetName())
+func (enemy *Tatarin) GetName() string {
+	return enemy.name
 }
 
-func (dragon *Dragon) GetDamage(attack int) {
-	dragon.hp = dragon.hp - attack
+func (enemy *Tatarin) Greeting() {
+	fmt.Printf("%s: Калайсын, вместо драки давай лучше калик бахнем брат\nВы рады и ваше хп увеличилось на 20\n\n", enemy.GetName())
+}
+
+func (enemy *Tatarin) GetDamage(attack int, energy int, name string) {
+	if energy < 20 {
+		fmt.Printf("%s: Получай плюху на %d\n", name, attack)
+		enemy.hp = enemy.hp - attack
+	} else {
+		fmt.Printf("%s: Я получаю силу от будды, я чувствую ее, получай божетсвенной ладонью на %d\n", name, attack + energy)
+		enemy.hp = enemy.hp - attack - energy
+	}
 }
